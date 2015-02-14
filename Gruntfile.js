@@ -29,9 +29,13 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+      sass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.scss'],
+        tasks: ['sass']
+      },
+      compiledCss: {
+        files: ['.tmp/styles/{,*/}*.css'],
+        tasks: ['autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -64,10 +68,6 @@ module.exports = function (grunt) {
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
               ),
               connect.static(appConfig.app)
             ];
@@ -131,6 +131,17 @@ module.exports = function (grunt) {
         }]
       },
       server: '.tmp'
+    },
+
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+          '.tmp/main.css': '<%= yeoman.app %>/styles/main.scss'
+        }
+      }
     },
 
     // Add vendor prefixed styles
@@ -335,25 +346,19 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }]
-      },
-      styles: {
-        expand: true,
-        cwd: '<%= yeoman.app %>/styles',
-        dest: '.tmp/styles/',
-        src: '{,*/}*.css'
       }
     },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'copy:styles'
+        'sass'
       ],
       test: [
-        'copy:styles'
+        'sass'
       ],
       dist: [
-        'copy:styles',
+        'sass',
         'imagemin',
         'svgmin'
       ]
