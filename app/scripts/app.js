@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name pilfoldApp
+ * @name pilfoldFront
  * @description
- * # pilfoldApp
+ * # pilfoldFront
  *
  * Main module of the application.
  */
 angular
-  .module('pilfoldApp', [
+  .module('pilfoldFront', [
     'ngAria',
     'ngRoute'
   ])

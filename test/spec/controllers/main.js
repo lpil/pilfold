@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('pilfoldApp'));
+  beforeEach(module('pilfoldFront'));
 
   var MainCtrl,
     scope;

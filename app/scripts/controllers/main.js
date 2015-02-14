@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name pilfoldApp.controller:MainCtrl
+ * @name pilfoldFront.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the pilfoldApp
+ * Controller of the pilfoldFront
  */
-angular.module('pilfoldApp')
+angular.module('pilfoldFront')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
